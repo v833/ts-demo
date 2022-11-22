@@ -1,9 +1,1 @@
-interface Person {
-  name: string
-  age: number
-}
-
-const person: Person = {
-  name: 'John',
-  age: 25
-}
+export { myLocal } from './localStorageFactory'
