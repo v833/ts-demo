@@ -20,5 +20,5 @@ export class LocalStorageFactory {
     return this.instance
   }
 }
-
+// 通过类名.方法, 调用静态方法
 export const myLocal = LocalStorageFactory.getInstance()
