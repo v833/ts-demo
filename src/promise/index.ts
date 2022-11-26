@@ -84,6 +84,29 @@ export class MyPromise<T = any> {
       }
     })
   }
+  static all(promises: MyPromise[]) {
+    return new MyPromise((resolve, reject) => {
+      const allPromisesValue: any[] = []
+      promises.forEach((promise, index) => {
+        promise.then(
+          (resolveSuccess) => {
+            processData(resolveSuccess, index)
+          },
+          (rejectFail) => {
+            reject(rejectFail)
+            return
+          }
+        )
+      })
+      // 利用索引
+      function processData(resolveSuccess: any, index: number) {
+        allPromisesValue[index] = resolveSuccess
+        if (index === promises.length - 1) {
+          resolve(allPromisesValue)
+        }
+      }
+    })
+  }
 }
 
 function isPromise(val: any): val is MyPromise<any> {
